@@ -73,6 +73,69 @@ const galleryGrid = document.getElementById('gallery-grid');
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.getElementById('site-nav');
 
+const sceneLibrary = {
+  'morning-practice': {
+    title: 'Morning Practice',
+    caption: 'A dawn routine with filtered light and soft leaves.',
+    palette: ['#f7f1e8', '#dce9d7', '#9bb39c', '#4d6a5c'],
+    accents: [
+      { x: 18, y: 18, r: 20, c: '#f2d7bf' },
+      { x: 48, y: 30, r: 28, c: '#b9d6bf' },
+      { x: 74, y: 52, r: 30, c: '#7d9b87' }
+    ]
+  },
+  'watering-cue': {
+    title: 'Watering Cue',
+    caption: 'Cool soil, dew, and a clear glass watering can.',
+    palette: ['#f4efe7', '#e2d0be', '#b9d9c0', '#6a8f71'],
+    accents: [
+      { x: 22, y: 24, r: 18, c: '#f0c7b2' },
+      { x: 46, y: 20, r: 26, c: '#d7e4c7' },
+      { x: 68, y: 48, r: 30, c: '#6f8f77' }
+    ]
+  },
+  'styling-note': {
+    title: 'Styling Note',
+    caption: 'Terracotta, linen, and matte ceramics in one palette.',
+    palette: ['#f8f0e8', '#ebcfb8', '#c8d6bd', '#7d9b87'],
+    accents: [
+      { x: 16, y: 28, r: 24, c: '#e0a98a' },
+      { x: 48, y: 26, r: 20, c: '#f3ddc5' },
+      { x: 74, y: 50, r: 28, c: '#7d9b87' }
+    ]
+  },
+  'process-reflection': {
+    title: 'Process Reflection',
+    caption: 'Sketches and notes arranged in an editorial workspace.',
+    palette: ['#f7f0e6', '#dfe7d8', '#a6b99f', '#5c7464'],
+    accents: [
+      { x: 20, y: 22, r: 22, c: '#d9c2a5' },
+      { x: 46, y: 34, r: 28, c: '#a6b99f' },
+      { x: 72, y: 44, r: 30, c: '#5c7464' }
+    ]
+  },
+  'design-reflection': {
+    title: 'Design Reflection',
+    caption: 'Soft editorial composition with botanical textures.',
+    palette: ['#f6efe7', '#efd1bd', '#d8e5c7', '#8aa18d'],
+    accents: [
+      { x: 18, y: 24, r: 20, c: '#f0ceb8' },
+      { x: 42, y: 30, r: 26, c: '#d8e5c7' },
+      { x: 74, y: 56, r: 30, c: '#8aa18d' }
+    ]
+  },
+  'client-reflection': {
+    title: 'Client Reflection',
+    caption: 'A calming mood board in green, peach, and cream.',
+    palette: ['#f8f1e9', '#e7d0bb', '#c9dfc4', '#6f8f77'],
+    accents: [
+      { x: 16, y: 18, r: 24, c: '#f0c8b2' },
+      { x: 48, y: 26, r: 22, c: '#f3deca' },
+      { x: 72, y: 50, r: 30, c: '#6f8f77' }
+    ]
+  }
+};
+
 function createSceneSvg(scene) {
   const width = 1200;
   const height = 1400;
@@ -160,6 +223,15 @@ if (seasonalImage) {
     ]
   }));
 }
+
+document.querySelectorAll('[data-scene]').forEach((image) => {
+  const scene = sceneLibrary[image.getAttribute('data-scene') || ''];
+  if (!scene) {
+    return;
+  }
+
+  image.src = svgToDataUri(createSceneSvg(scene));
+});
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {

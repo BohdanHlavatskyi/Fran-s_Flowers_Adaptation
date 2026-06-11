@@ -324,6 +324,20 @@ body::before {
   padding: 22px;
 }
 
+.tile-image {
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.tile-image--small {
+  min-height: 140px;
+}
+
 .gallery-section {
   padding: 88px 0 14px;
 }
@@ -446,6 +460,10 @@ body::before {
   color: var(--text);
   font-size: 1.04rem;
   line-height: 1.8;
+}
+
+.testimonial-card .tile-image {
+  margin-bottom: 0;
 }
 
 .testimonial-card footer {
@@ -667,6 +685,10 @@ button {
   .testimonial-card,
   .seasonal-card {
     border-radius: 22px;
+  }
+
+  .tile-image {
+    min-height: 128px;
   }
 }
 
