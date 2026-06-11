@@ -68,7 +68,10 @@ const artScenes = [
 ];
 
 const heroArt = document.getElementById('hero-art');
+const seasonalImage = document.getElementById('seasonal-image');
 const galleryGrid = document.getElementById('gallery-grid');
+const navToggle = document.querySelector('.nav-toggle');
+const siteNav = document.getElementById('site-nav');
 
 function createSceneSvg(scene) {
   const width = 1200;
@@ -119,26 +122,55 @@ function svgToDataUri(svg) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-heroArt.innerHTML = '';
-heroArt.style.backgroundImage = `url("${svgToDataUri(createSceneSvg(artScenes[0]))}")`;
-heroArt.style.backgroundSize = 'cover';
-heroArt.style.backgroundPosition = 'center';
+if (heroArt) {
+  heroArt.src = svgToDataUri(createSceneSvg(artScenes[0]));
+}
 
-artScenes.forEach((scene, index) => {
-  const card = document.createElement('article');
-  card.className = 'gallery-card reveal';
-  card.style.animationDelay = `${index * 90}ms`;
+if (galleryGrid) {
+  artScenes.forEach((scene, index) => {
+    const card = document.createElement('article');
+    card.className = 'gallery-card reveal';
+    card.style.animationDelay = `${index * 90}ms`;
 
-  const image = document.createElement('div');
-  image.className = 'gallery-image';
-  image.style.backgroundImage = `url("${svgToDataUri(createSceneSvg(scene))}")`;
-  image.style.backgroundSize = 'cover';
-  image.style.backgroundPosition = 'center';
+    const image = document.createElement('div');
+    image.className = 'gallery-image';
+    image.style.backgroundImage = `url("${svgToDataUri(createSceneSvg(scene))}")`;
+    image.style.backgroundSize = 'cover';
+    image.style.backgroundPosition = 'center';
 
-  const caption = document.createElement('div');
-  caption.className = 'gallery-caption';
-  caption.innerHTML = `<h3>${scene.title}</h3><p>${scene.caption}</p>`;
+    const caption = document.createElement('div');
+    caption.className = 'gallery-caption';
+    caption.innerHTML = `<h3>${scene.title}</h3><p>${scene.caption}</p>`;
 
-  card.append(image, caption);
-  galleryGrid.append(card);
-});
+    card.append(image, caption);
+    galleryGrid.append(card);
+  });
+}
+
+if (seasonalImage) {
+  seasonalImage.src = svgToDataUri(createSceneSvg({
+    title: 'Spring Bouquet',
+    caption: 'Peonies, ranunculus, rosemary, and mint arranged in a ceramic vase.',
+    palette: ['#f8f1e9', '#f0d3bf', '#c9dfc4', '#6f8f77'],
+    accents: [
+      { x: 18, y: 24, r: 24, c: '#f0c1b0' },
+      { x: 44, y: 34, r: 18, c: '#f3dcc7' },
+      { x: 68, y: 24, r: 26, c: '#bfd7b8' },
+      { x: 52, y: 60, r: 34, c: '#6f8f77' }
+    ]
+  }));
+}
+
+if (navToggle && siteNav) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = siteNav.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  siteNav.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLAnchorElement && siteNav.classList.contains('is-open')) {
+      siteNav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}

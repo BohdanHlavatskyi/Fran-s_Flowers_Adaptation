@@ -21,6 +21,17 @@ html {
   scroll-behavior: smooth;
 }
 
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(71, 99, 86, 0.45);
+  outline-offset: 3px;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -50,6 +61,23 @@ body::before {
   max-width: 1240px;
   margin: 0 auto;
   padding: 28px 22px 56px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 18px;
+  top: -48px;
+  z-index: 20;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #243428;
+  color: #fff;
+  text-decoration: none;
+  transition: top 160ms ease;
+}
+
+.skip-link:focus {
+  top: 14px;
 }
 
 .orb {
@@ -92,6 +120,22 @@ body::before {
   padding: 10px 4px 30px;
 }
 
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text);
+  border: 1px solid rgba(86, 110, 94, 0.18);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
 .topbar h1,
 .hero h2,
 .section-heading h2,
@@ -121,13 +165,9 @@ body::before {
   font-weight: 700;
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-nav a {
+.site-nav a,
+.footer-links a,
+.social-links a {
   color: var(--text);
   text-decoration: none;
   padding: 10px 14px;
@@ -137,7 +177,9 @@ nav a {
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
-nav a:hover {
+.site-nav a:hover,
+.footer-links a:hover,
+.social-links a:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.52);
   border-color: rgba(86, 110, 94, 0.18);
@@ -252,8 +294,10 @@ nav a:hover {
 .feature-card__image {
   min-height: 520px;
   border-radius: 26px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
   background: linear-gradient(180deg, rgba(237, 245, 235, 0.12), rgba(255, 255, 255, 0.02));
-  overflow: hidden;
 }
 
 .feature-card__content {
@@ -338,6 +382,85 @@ nav a:hover {
   min-height: 250px;
 }
 
+.seasonal-section,
+.testimonials-section {
+  padding-top: 78px;
+}
+
+.seasonal-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
+  gap: 18px;
+  padding: 18px;
+  border-radius: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.seasonal-card__image {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 24px;
+  object-fit: cover;
+  display: block;
+}
+
+.seasonal-card__content {
+  align-self: center;
+  padding: 8px 10px;
+}
+
+.seasonal-card__content h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.seasonal-card__content p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.testimonial-card {
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+  border-radius: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.testimonial-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.testimonial-card footer {
+  display: grid;
+  gap: 3px;
+}
+
+.testimonial-card strong {
+  font-size: 1.06rem;
+}
+
+.testimonial-card span {
+  color: var(--muted);
+}
+
 .gallery-caption {
   padding: 18px 18px 22px;
 }
@@ -410,6 +533,30 @@ button {
   animation: rise 900ms ease both;
 }
 
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 88px;
+  padding: 26px 0 0;
+  border-top: 1px solid rgba(86, 110, 94, 0.18);
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.footer-links,
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -439,7 +586,25 @@ button {
   }
 
   .topbar {
+    position: relative;
     align-items: start;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .site-nav.is-open {
+    display: flex;
   }
 
   .feature-card__image {
@@ -447,8 +612,19 @@ button {
   }
 
   .insight-strip,
-  .stats {
+  .stats,
+  .testimonials-grid,
+  .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .seasonal-card {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links,
+  .social-links {
+    justify-content: flex-start;
   }
 
   .gallery-card,
@@ -487,7 +663,23 @@ button {
   .journal-panel,
   .feature-card,
   .insight-strip article,
-  .stats li {
+  .stats li,
+  .testimonial-card,
+  .seasonal-card {
     border-radius: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

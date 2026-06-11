@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page-shell">
       <div class="orb orb-a"></div>
       <div class="orb orb-b"></div>
@@ -21,15 +22,20 @@
           <p class="eyebrow">Garden influencer · pro-environment journal</p>
           <h1>Fran's Flowers</h1>
         </div>
-        <nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+          <a href="#hero">Home</a>
           <a href="#stories">Stories</a>
+          <a href="#seasonal-picks">Seasonal Picks</a>
           <a href="#gallery">Gallery</a>
+          <a href="#testimonials">Testimonials</a>
           <a href="#journal">Journal</a>
+          <a href="about.html">About Fran</a>
         </nav>
       </header>
 
-      <main>
-        <section class="hero">
+      <main id="main-content">
+        <section class="hero" id="hero">
           <div class="hero-copy reveal">
             <p class="label">Slow beauty for modern gardens</p>
             <h2>Growing a softer rhythm between petals, light, and daily rituals.</h2>
@@ -50,7 +56,7 @@
 
           <div class="hero-visual reveal">
             <div class="feature-card">
-              <div class="feature-card__image" id="hero-art" aria-hidden="true"></div>
+              <img class="feature-card__image" id="hero-art" alt="AI-generated greenhouse scene with soft eucalyptus and morning light" />
               <div class="feature-card__content">
                 <p>Current mood</p>
                 <h3>Soft light, dew, and eucalyptus.</h3>
@@ -82,6 +88,52 @@
           <div class="gallery-grid" id="gallery-grid"></div>
         </section>
 
+        <section class="seasonal-section reveal" id="seasonal-picks">
+          <div class="section-heading">
+            <p class="label">Seasonal picks</p>
+            <h2>Spring bouquet spotlight</h2>
+          </div>
+          <article class="seasonal-card">
+            <img class="seasonal-card__image" id="seasonal-image" alt="AI-generated bouquet of peonies, ranunculus, and garden herbs in a ceramic vase" />
+            <div class="seasonal-card__content">
+              <h3>Peony, ranunculus, and herb bouquet</h3>
+              <p>
+                A layered bouquet for the current season: soft peonies, bright ranunculus, rosemary,
+                and garden mint styled in a matte ceramic vessel for a cool, calming finish.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="testimonials-section" id="testimonials">
+          <div class="section-heading reveal">
+            <p class="label">Community love</p>
+            <h2>Reader testimonials</h2>
+          </div>
+          <div class="testimonials-grid">
+            <article class="testimonial-card reveal">
+              <p>
+                "Fran's page feels like a quiet greenhouse at sunrise. The visuals are beautiful,
+                and the care tips are practical enough to use the same day."
+              </p>
+              <footer>
+                <strong>Maya R.</strong>
+                <span>Urban balcony gardener</span>
+              </footer>
+            </article>
+            <article class="testimonial-card reveal">
+              <p>
+                "I came for the aesthetic and stayed for the reflection. The journal reads like a
+                peaceful routine, not just another social feed."
+              </p>
+              <footer>
+                <strong>Elena T.</strong>
+                <span>Floral design student</span>
+              </footer>
+            </article>
+          </div>
+        </section>
+
         <section class="journal-panel reveal" id="journal">
           <div>
             <p class="label">Latest journal entry</p>
@@ -100,6 +152,24 @@
           </form>
         </section>
       </main>
+
+      <footer class="site-footer">
+        <div>
+          <p class="label">Fran's Flowers</p>
+          <p>Quiet garden stories, AI-generated floral art, and seasonal inspiration.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#hero">Home</a>
+          <a href="#seasonal-picks">Seasonal Picks</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="about.html">About Fran</a>
+        </div>
+        <div class="social-links" aria-label="Social links">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+      </footer>
     </div>
 
     <script src="script.js"></script>
