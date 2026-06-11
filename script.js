@@ -77,6 +77,7 @@ const sceneLibrary = {
   'morning-practice': {
     title: 'Morning Practice',
     caption: 'A dawn routine with filtered light and soft leaves.',
+    kind: 'pruning',
     palette: ['#f7f1e8', '#dce9d7', '#9bb39c', '#4d6a5c'],
     accents: [
       { x: 18, y: 18, r: 20, c: '#f2d7bf' },
@@ -87,6 +88,7 @@ const sceneLibrary = {
   'watering-cue': {
     title: 'Watering Cue',
     caption: 'Cool soil, dew, and a clear glass watering can.',
+    kind: 'watering',
     palette: ['#f4efe7', '#e2d0be', '#b9d9c0', '#6a8f71'],
     accents: [
       { x: 22, y: 24, r: 18, c: '#f0c7b2' },
@@ -97,6 +99,7 @@ const sceneLibrary = {
   'styling-note': {
     title: 'Styling Note',
     caption: 'Terracotta, linen, and matte ceramics in one palette.',
+    kind: 'still-life',
     palette: ['#f8f0e8', '#ebcfb8', '#c8d6bd', '#7d9b87'],
     accents: [
       { x: 16, y: 28, r: 24, c: '#e0a98a' },
@@ -107,6 +110,7 @@ const sceneLibrary = {
   'process-reflection': {
     title: 'Process Reflection',
     caption: 'Sketches and notes arranged in an editorial workspace.',
+    kind: 'workspace',
     palette: ['#f7f0e6', '#dfe7d8', '#a6b99f', '#5c7464'],
     accents: [
       { x: 20, y: 22, r: 22, c: '#d9c2a5' },
@@ -117,6 +121,7 @@ const sceneLibrary = {
   'design-reflection': {
     title: 'Design Reflection',
     caption: 'Soft editorial composition with botanical textures.',
+    kind: 'moodboard',
     palette: ['#f6efe7', '#efd1bd', '#d8e5c7', '#8aa18d'],
     accents: [
       { x: 18, y: 24, r: 20, c: '#f0ceb8' },
@@ -127,6 +132,7 @@ const sceneLibrary = {
   'client-reflection': {
     title: 'Client Reflection',
     caption: 'A calming mood board in green, peach, and cream.',
+    kind: 'brief',
     palette: ['#f8f1e9', '#e7d0bb', '#c9dfc4', '#6f8f77'],
     accents: [
       { x: 16, y: 18, r: 24, c: '#f0c8b2' },
@@ -177,6 +183,45 @@ function createSceneSvg(scene) {
       <path d="M180 1100 C260 980, 340 980, 430 1100 S590 1220, 660 1110 S820 980, 940 1110" fill="none" stroke="rgba(71,99,86,0.36)" stroke-width="16" stroke-linecap="round" />
       <path d="M140 1040 C260 930, 350 920, 460 1046 S620 1150, 720 1052 S900 932, 1040 1062" fill="none" stroke="rgba(186,127,100,0.28)" stroke-width="10" stroke-linecap="round" />
       ${accents}
+      ${scene.kind === 'pruning' ? `
+        <path d="M790 450 L950 590" stroke="rgba(71,99,86,0.9)" stroke-width="18" stroke-linecap="round" />
+        <path d="M760 420 L900 560" stroke="rgba(186,127,100,0.82)" stroke-width="18" stroke-linecap="round" />
+        <circle cx="740" cy="410" r="36" fill="rgba(255,255,255,0.55)" />
+        <circle cx="922" cy="598" r="28" fill="rgba(255,255,255,0.42)" />
+      ` : ''}
+      ${scene.kind === 'watering' ? `
+        <path d="M748 450 C860 420, 940 470, 980 572 C886 622, 804 610, 724 560 Z" fill="rgba(255,255,255,0.52)" stroke="rgba(71,99,86,0.25)" stroke-width="12" />
+        <path d="M960 534 C1040 528, 1068 570, 1080 624" fill="none" stroke="rgba(71,99,86,0.55)" stroke-width="16" stroke-linecap="round" />
+        <circle cx="1088" cy="620" r="18" fill="rgba(186,127,100,0.75)" />
+        <circle cx="1040" cy="760" r="12" fill="rgba(255,255,255,0.78)" />
+        <circle cx="1010" cy="810" r="10" fill="rgba(255,255,255,0.72)" />
+      ` : ''}
+      ${scene.kind === 'still-life' ? `
+        <rect x="760" y="540" width="150" height="260" rx="74" fill="rgba(186,127,100,0.42)" />
+        <rect x="930" y="588" width="130" height="230" rx="58" fill="rgba(125,155,135,0.38)" />
+        <path d="M738 504 H998" stroke="rgba(255,255,255,0.42)" stroke-width="24" stroke-linecap="round" />
+        <rect x="730" y="474" width="316" height="54" rx="24" fill="rgba(255,255,255,0.26)" />
+      ` : ''}
+      ${scene.kind === 'workspace' ? `
+        <rect x="740" y="470" width="330" height="220" rx="28" fill="rgba(255,255,255,0.6)" stroke="rgba(71,99,86,0.16)" stroke-width="8" />
+        <rect x="780" y="520" width="88" height="120" rx="12" fill="rgba(186,127,100,0.3)" />
+        <rect x="886" y="508" width="136" height="144" rx="16" fill="rgba(162,185,156,0.34)" />
+        <path d="M800 574 H842 M800 606 H836 M910 548 H998 M910 582 H984" stroke="rgba(71,99,86,0.38)" stroke-width="10" stroke-linecap="round" />
+      ` : ''}
+      ${scene.kind === 'moodboard' ? `
+        <rect x="738" y="452" width="144" height="172" rx="18" fill="rgba(255,255,255,0.72)" />
+        <rect x="898" y="472" width="154" height="166" rx="18" fill="rgba(255,255,255,0.62)" />
+        <rect x="778" y="648" width="186" height="156" rx="18" fill="rgba(255,255,255,0.56)" />
+        <circle cx="810" cy="536" r="24" fill="rgba(186,127,100,0.62)" />
+        <circle cx="972" cy="560" r="30" fill="rgba(111,143,119,0.54)" />
+      ` : ''}
+      ${scene.kind === 'brief' ? `
+        <rect x="744" y="462" width="324" height="242" rx="28" fill="rgba(255,255,255,0.64)" stroke="rgba(71,99,86,0.16)" stroke-width="8" />
+        <path d="M792 518 H1004" stroke="rgba(71,99,86,0.34)" stroke-width="12" stroke-linecap="round" />
+        <path d="M792 564 H952" stroke="rgba(71,99,86,0.26)" stroke-width="10" stroke-linecap="round" />
+        <path d="M792 606 H978" stroke="rgba(71,99,86,0.22)" stroke-width="10" stroke-linecap="round" />
+        <rect x="806" y="656" width="126" height="30" rx="15" fill="rgba(186,127,100,0.42)" />
+      ` : ''}
     </svg>
   `;
 }
