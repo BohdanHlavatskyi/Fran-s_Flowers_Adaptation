@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A calm, sophisticated gardening influencer website with AI-style visual storytelling." />
+    <title>Fran's Flowers | Garden Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grain"></div>
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Garden influencer · pro-environment journal</p>
+          <h1>Fran's Flowers</h1>
+        </div>
+        <nav>
+          <a href="#stories">Stories</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#journal">Journal</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy reveal">
+            <p class="label">Slow beauty for modern gardens</p>
+            <h2>Growing a softer rhythm between petals, light, and daily rituals.</h2>
+            <p class="lede">
+              A serene home for plant care notes, seasonal inspiration, and AI-generated visual stories
+              that feel like morning mist over a greenhouse.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#journal">Read the journal</a>
+              <a class="button button-secondary" href="#gallery">View the art</a>
+            </div>
+            <ul class="stats">
+              <li><strong>124k</strong><span>community growers</span></li>
+              <li><strong>38</strong><span>AI garden scenes</span></li>
+              <li><strong>12</strong><span>seasonal rituals</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="feature-card">
+              <div class="feature-card__image" id="hero-art" aria-hidden="true"></div>
+              <div class="feature-card__content">
+                <p>Current mood</p>
+                <h3>Soft light, dew, and eucalyptus.</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="insight-strip reveal" id="stories">
+          <article>
+            <span>Morning practice</span>
+            <p>Trim only what has fully faded and let the stems rest in filtered light.</p>
+          </article>
+          <article>
+            <span>Watering cue</span>
+            <p>Use your fingers, not a schedule. The top inch should feel cool and airy.</p>
+          </article>
+          <article>
+            <span>Styling note</span>
+            <p>Group terracotta, linen, and matte ceramic for a quiet layered palette.</p>
+          </article>
+        </section>
+
+        <section class="gallery-section" id="gallery">
+          <div class="section-heading reveal">
+            <p class="label">AI-generated pictures</p>
+            <h2>Visual diaries from imagined greenhouses, rain-washed patios, and candlelit shelves.</h2>
+          </div>
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </section>
+
+        <section class="journal-panel reveal" id="journal">
+          <div>
+            <p class="label">Latest journal entry</p>
+            <h2>A calm greenhouse is built with repetition, restraint, and a little wonder.</h2>
+            <p>
+              Fran documents each arrangement like a living poem: compost turns, pruning decisions,
+              and the tiny moments when a bloom opens right after the rain.
+            </p>
+          </div>
+          <form class="subscribe-form">
+            <label for="email">Weekly notes</label>
+            <div class="form-row">
+              <input id="email" type="email" placeholder="Email address" />
+              <button type="button">Subscribe</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
